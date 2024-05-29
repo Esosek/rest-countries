@@ -1,0 +1,19 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import countryData from '../../data/data.json';
+
+export const getStaticPaths = () => {
+  return countryData.map((country) => {
+    return {
+      params: { code: country.alpha3Code.toLowerCase() },
+      props: country,
+    };
+  });
+};
+
+const country = Astro.props;
+---
+
+<MainLayout title="Country handbook">
+  <h1>{country.alpha3Code}</h1>
+</MainLayout>
