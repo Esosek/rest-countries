@@ -1,0 +1,17 @@
+:root {
+  --fw-light: 300;
+  --fw-normal: 600;
+  --fw-bold: 800;
+
+  --clr-white: 'hsl(0, 0%, 100%)';
+  --clr-neutral-200: 'hsl(0, 0%, 98%)';
+  --clr-neutral-600: 'hsl(0, 0%, 52%)';
+
+  --clr-dark-blue-700: 'hsl(209, 23%, 22%)';
+  --clr-dark-blue-800: 'hsl(207, 26%, 17%)';
+  --clr-dark-blue-900: 'hsl(200, 15%, 8%)';
+}
+
+body {
+  font-family: 'Nunito Sans', system-ui, sans-serif;
+}
