@@ -1,21 +1,8 @@
 ---
-import '../styles/global.css';
-import Homepage from '../components/Homepage';
+import MainLayout from '../layouts/MainLayout.astro';
+import Homepage from '../components/homepage/Homepage';
 ---
 
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="../styles/global.css" />
-    <title>Country handbook</title>
-  </head>
-  <body>
-    <Homepage client:only="react" />
-  </body>
-</html>
+<MainLayout title="Country Handbook">
+  <Homepage client:only="react" />
+</MainLayout>
