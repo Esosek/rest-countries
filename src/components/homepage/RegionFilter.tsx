@@ -1,5 +1,4 @@
-import { useRef, useState } from 'react';
-
+import { useRef, useState, useEffect } from 'react';
 import styles from './RegionFilter.module.css';
 import arrowUpIcon from '../../assets/images/arrow_up_icon.svg';
 
@@ -10,7 +9,8 @@ export default function RegionFilter(props: RegionFilterProps) {
 
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('none');
-  const selectRef = useRef(null);
+  const selectRef = useRef<HTMLSelectElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   function toggleSelect() {
     setIsOpen(!isOpen);
@@ -24,6 +24,10 @@ export default function RegionFilter(props: RegionFilterProps) {
       clearUrlParam('filter');
     } else {
       setUrlParam('filter', selectedOption);
+    }
+
+    if (buttonRef.current) {
+      buttonRef.current.focus();
     }
   }
 
@@ -39,8 +43,26 @@ export default function RegionFilter(props: RegionFilterProps) {
     window.history.replaceState(null, '', url.toString());
   }
 
+  function handleKeyDown(event: React.KeyboardEvent) {
+    if (event.key === 'Escape' && isOpen) {
+      setIsOpen(false);
+      if (buttonRef.current) {
+        buttonRef.current.focus();
+      }
+    }
+  }
+
+  useEffect(() => {
+    if (isOpen) {
+      const firstOption = document.querySelector(`.${styles.option}`);
+      if (firstOption) {
+        (firstOption as HTMLElement).focus();
+      }
+    }
+  }, [isOpen]);
+
   return (
-    <div className={styles.selectWrapper}>
+    <div className={styles.selectWrapper} onKeyDown={handleKeyDown}>
       <label htmlFor="filter-select" defaultValue="none" className="sr-only">
         Filter by Region
       </label>
@@ -52,19 +74,20 @@ export default function RegionFilter(props: RegionFilterProps) {
         className="sr-only"
       >
         <option value="none">None</option>
-        {REGIONS.map((region) => {
-          return (
-            <option key={region} value={region}>
-              {region}
-            </option>
-          );
-        })}
+        {REGIONS.map((region) => (
+          <option key={region} value={region}>
+            {region}
+          </option>
+        ))}
       </select>
       <div>
         <button
+          ref={buttonRef}
           onClick={toggleSelect}
           className={styles.select}
-          aria-hidden={true}
+          aria-haspopup="listbox"
+          aria-expanded={isOpen}
+          aria-labelledby="filter-select"
         >
           <span>
             {selectedOption === 'none' ? 'Filter by Region' : selectedOption}
@@ -73,36 +96,41 @@ export default function RegionFilter(props: RegionFilterProps) {
             src={arrowUpIcon.src}
             alt="Arrow icon"
             className={styles.arrow}
-            style={{
-              rotate: isOpen ? '-180deg' : '0deg',
-            }}
+            style={{ transform: isOpen ? 'rotate(-180deg)' : 'rotate(0deg)' }}
           />
         </button>
-        <ul
-          className={styles.optionList}
-          style={{ transform: isOpen ? 'scaleY(1)' : 'scaleY(0)' }}
-        >
-          <li>
-            <button
-              onClick={() => handleOptionSelect('none')}
-              className={styles.option}
-            >
-              None
-            </button>
-          </li>
-          {REGIONS.map((region) => {
-            return (
-              <li>
+        {isOpen && (
+          <ul
+            className={styles.optionList}
+            role="listbox"
+            aria-activedescendant={selectedOption}
+            tabIndex={-1}
+            style={{ transform: isOpen ? 'scaleY(1)' : 'scaleY(0)' }}
+          >
+            <li>
+              <button
+                onClick={() => handleOptionSelect('none')}
+                className={styles.option}
+                role="option"
+                aria-selected={selectedOption === 'none'}
+              >
+                None
+              </button>
+            </li>
+            {REGIONS.map((region) => (
+              <li key={region}>
                 <button
                   onClick={() => handleOptionSelect(region)}
                   className={styles.option}
+                  role="option"
+                  aria-selected={selectedOption === region}
                 >
                   {region}
                 </button>
               </li>
-            );
-          })}
-        </ul>
+            ))}
+          </ul>
+        )}
       </div>
     </div>
   );
