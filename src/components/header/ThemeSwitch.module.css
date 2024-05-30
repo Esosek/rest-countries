@@ -1,0 +1,9 @@
+.flex {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+svg {
+  fill: var(--clr-dark-blue-900);
+}

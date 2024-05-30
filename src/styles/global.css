@@ -6,6 +6,7 @@
   --clr-white: hsl(0, 0%, 100%);
   --clr-neutral-200: hsl(0, 0%, 98%);
   --clr-neutral-600: hsl(0, 0%, 52%);
+  --clr-transparent-15: hsla(0, 0%, 0%, 0.15);
 
   --clr-dark-blue-700: hsl(209, 23%, 22%);
   --clr-dark-blue-800: hsl(207, 26%, 17%);
@@ -14,14 +15,15 @@
 
 * {
   box-sizing: border-box;
+  font-size: 1rem;
   padding: 0;
   margin: 0;
-  font-size: 1rem;
   font-weight: var(--fw-normal);
 }
 
 body {
   font-family: 'Nunito Sans', system-ui, sans-serif;
+  color: var(--clr-dark-blue-900);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
 }
@@ -37,6 +39,15 @@ button,
 textarea,
 select {
   font: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+}
+
+button:hover {
+  cursor: pointer;
 }
 
 p,

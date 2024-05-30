@@ -1,0 +1,20 @@
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 1rem;
+  box-shadow: 0 3px 5px 0 var(--clr-transparent-15);
+}
+
+h1 {
+  font-weight: var(--fw-bold);
+}
+
+@media only screen and (min-width: 640px) {
+  header {
+    padding-inline: 5rem;
+  }
+  h1 {
+    font-size: 1.5rem;
+  }
+}
