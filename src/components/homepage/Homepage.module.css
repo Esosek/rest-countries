@@ -1,5 +1,5 @@
 .main {
-  padding: 3rem 5rem;
+  padding: 2rem 1rem;
   font-size: var(--fs-small);
 }
 
@@ -7,4 +7,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+@media only screen and (min-width: 640px) {
+  .main {
+    padding: 3rem 5rem;
+  }
 }

@@ -1,4 +1,4 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import styles from './RegionFilter.module.css';
 import arrowUpIcon from '../../assets/images/arrow_up_icon.svg';
 
@@ -51,15 +51,6 @@ export default function RegionFilter(props: RegionFilterProps) {
       }
     }
   }
-
-  useEffect(() => {
-    if (isOpen) {
-      const firstOption = document.querySelector(`.${styles.option}`);
-      if (firstOption) {
-        (firstOption as HTMLElement).focus();
-      }
-    }
-  }, [isOpen]);
 
   return (
     <div className={styles.selectWrapper} onKeyDown={handleKeyDown}>
