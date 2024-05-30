@@ -12,7 +12,7 @@ export default function RegionFilter(props: RegionFilterProps) {
   }
   return (
     <>
-      <div>
+      {/* <div>
         <button onClick={changeParam}>Add query param</button>
         <button
           onClick={removeParam}
@@ -21,7 +21,7 @@ export default function RegionFilter(props: RegionFilterProps) {
           Remove query param
         </button>
       </div>
-      <a href="/country/afg">navigate to detail page</a>
+      <a href="/country/afg">navigate to detail page</a> */}
     </>
   );
 }

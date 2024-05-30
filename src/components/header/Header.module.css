@@ -1,20 +1,21 @@
-header {
+.header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: var(--clr-white);
   padding: 1.5rem 1rem;
   box-shadow: 0 3px 5px 0 var(--clr-transparent-15);
 }
 
-h1 {
+.title {
   font-weight: var(--fw-bold);
 }
 
 @media only screen and (min-width: 640px) {
-  header {
+  .header {
     padding-inline: 5rem;
   }
-  h1 {
+  .title {
     font-size: 1.5rem;
   }
 }

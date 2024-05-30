@@ -6,7 +6,7 @@ type HeaderProps = {};
 export default function Header(props: HeaderProps) {
   return (
     <header className={styles.header}>
-      <h1 className={styles.h1}>Where in the world?</h1>
+      <h1 className={styles.title}>Where in the world?</h1>
       <ThemeSwitch />
     </header>
   );
