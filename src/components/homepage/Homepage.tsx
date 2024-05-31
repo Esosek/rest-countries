@@ -11,6 +11,7 @@ type HomepageProps = {
 };
 
 export default function Homepage({ countries }: HomepageProps) {
+  countries.sort((a, b) => b.population - a.population);
   return (
     <>
       <Header />

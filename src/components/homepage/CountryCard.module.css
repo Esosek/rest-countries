@@ -1,0 +1,21 @@
+.card {
+  background-color: var(--clr-white);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.content {
+  padding: 2rem;
+  font-size: var(--fs-small);
+  font-weight: var(--fw-light);
+}
+
+.stronger {
+  font-weight: var(--fw-regular);
+}
+
+.title {
+  font-size: var(--fs-regular);
+  font-weight: var(--fw-bold);
+  margin-block: 0.5rem;
+}
