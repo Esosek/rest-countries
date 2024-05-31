@@ -58,7 +58,12 @@ export default function DetailPage({ country }: DetailPageProps) {
               const countryName = getCountryNameByCode(border);
               return countryName === undefined ? null : (
                 <li key={border}>
-                  <a href={`/country/${border.toLowerCase()}`}>{countryName}</a>
+                  <Button
+                    isLink={true}
+                    href={`/country/${border.toLowerCase()}`}
+                  >
+                    {countryName}
+                  </Button>
                 </li>
               );
             })}
