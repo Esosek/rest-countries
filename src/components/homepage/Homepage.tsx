@@ -3,8 +3,14 @@ import styles from './Homepage.module.css';
 import Header from '../header/Header';
 import SearchBar from './SearchBar';
 import RegionFilter from './RegionFilter';
+import type { Country } from '../../types/country';
+import CountryCard from './CountryCard';
 
-export default function Homepage() {
+type HomepageProps = {
+  countries: Country[];
+};
+
+export default function Homepage({ countries }: HomepageProps) {
   return (
     <>
       <Header />
@@ -12,6 +18,11 @@ export default function Homepage() {
         <div className={styles.flex}>
           <SearchBar />
           <RegionFilter />
+        </div>
+        <div className={styles.grid}>
+          {countries.map((country) => (
+            <CountryCard key={country.alpha3Code} country={country} />
+          ))}
         </div>
       </main>
     </>

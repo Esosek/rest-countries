@@ -1,8 +1,11 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import Homepage from '../components/homepage/Homepage';
+
+import countryData from '../data/data.json';
+import type { Country } from '../types/country';
 ---
 
 <MainLayout title="Country Handbook">
-  <Homepage client:only="react" />
+  <Homepage client:only="react" countries={countryData as Country[]} />
 </MainLayout>
