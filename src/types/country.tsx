@@ -18,5 +18,6 @@ export type Country = {
     symbol: string;
   }[];
   flag: string;
+  languages: { name: string; [key: string]: any }[];
   [key: string]: any; // Allow additional properties
 };

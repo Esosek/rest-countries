@@ -1,6 +1,8 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import countryData from '../../data/data.json';
+import DetailPage from '../../components/detail-page/DetailPage';
+import type { Country } from '../../types/country';
 
 export const getStaticPaths = () => {
   return countryData.map((country) => {
@@ -15,5 +17,5 @@ const country = Astro.props;
 ---
 
 <MainLayout title={`${country.name} | Country Handbook`}>
-  <h1>{country.alpha3Code}</h1>
+  <DetailPage client:only="react" country={country as Country} />
 </MainLayout>
