@@ -7,7 +7,10 @@ type CountryCardProps = {
 
 export default function CountryCard({ country }: CountryCardProps) {
   return (
-    <button className={styles.card}>
+    <a
+      href={`/country/${country.alpha3Code.toLowerCase()}`}
+      className={styles.card}
+    >
       <img
         src={country.flag}
         alt={`Flag of ${country.name}`}
@@ -30,6 +33,6 @@ export default function CountryCard({ country }: CountryCardProps) {
           </p>
         )}
       </div>
-    </button>
+    </a>
   );
 }

@@ -7,6 +7,12 @@
   overflow: clip;
   box-shadow: var(--shadow-md);
   text-align: left;
+  transition: transform 300ms;
+}
+
+.card:hover {
+  cursor: pointer;
+  transform: scale(1.025);
 }
 
 .image {
