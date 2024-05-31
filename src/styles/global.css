@@ -60,6 +60,10 @@ a {
   color: inherit;
 }
 
+a:focus {
+  outline-color: var(--clr-outline);
+}
+
 button {
   background: none;
   border: none;
