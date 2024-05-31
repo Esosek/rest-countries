@@ -11,6 +11,7 @@
   --clr-white: hsl(0, 0%, 100%);
   --clr-neutral-200: hsl(0, 0%, 98%);
   --clr-neutral-600: hsl(0, 0%, 52%);
+  --clr-transparent-5: hsla(0, 0%, 0%, 0.05);
   --clr-transparent-10: hsla(0, 0%, 0%, 0.1);
 
   --clr-outline: #ff7d29;
@@ -19,6 +20,7 @@
   --clr-dark-blue-800: hsl(207, 26%, 17%);
   --clr-dark-blue-900: hsl(200, 15%, 8%);
 
+  --shadow-sm: 0 2px 5px 2px var(--clr-transparent-5);
   --shadow-md: 0 2px 10px 2px var(--clr-transparent-10);
   --border-radius-sm: 0.25rem;
   --border-radius-md: 0.35rem;
@@ -35,7 +37,7 @@ body {
   color: var(--clr-dark-blue-900);
   font-size: var(--fs-regular);
   font-weight: var(--fw-regular);
-  line-height: 1.5;
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
 }
 

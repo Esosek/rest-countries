@@ -7,12 +7,17 @@ type CountryCardProps = {
 
 export default function CountryCard({ country }: CountryCardProps) {
   return (
-    <div className={styles.card}>
+    <button className={styles.card}>
+      <img
+        src={country.flag}
+        alt={`Flag of ${country.name}`}
+        className={styles.image}
+      />
       <div className={styles.content}>
         <h2 className={styles.title}>{country.name}</h2>
         <p>
           <span className={styles.stronger}>Population: </span>
-          {country.population}
+          {country.population.toLocaleString('en-US')}
         </p>
         <p>
           <span className={styles.stronger}>Region: </span>
@@ -25,6 +30,6 @@ export default function CountryCard({ country }: CountryCardProps) {
           </p>
         )}
       </div>
-    </div>
+    </button>
   );
 }
