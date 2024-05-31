@@ -1,5 +1,6 @@
 import styles from './DetailPage.module.css';
 import type { Country } from '../../types/country';
+
 import Button from '../Button';
 import countryData from '../../data/data.json';
 import backIcon from '../../assets/images/back_icon.svg';
