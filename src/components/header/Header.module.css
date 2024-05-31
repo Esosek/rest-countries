@@ -1,10 +1,13 @@
 .header {
   display: flex;
+  position: sticky;
+  top: 0;
   align-items: center;
   justify-content: space-between;
   background-color: var(--clr-white);
   padding: 1.5rem 1rem;
   box-shadow: var(--shadow-md);
+  z-index: 10;
 }
 
 .title {
