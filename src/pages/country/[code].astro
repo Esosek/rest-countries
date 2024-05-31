@@ -14,6 +14,6 @@ export const getStaticPaths = () => {
 const country = Astro.props;
 ---
 
-<MainLayout title="Country handbook">
+<MainLayout title={`${country.name} | Country Handbook`}>
   <h1>{country.alpha3Code}</h1>
 </MainLayout>
