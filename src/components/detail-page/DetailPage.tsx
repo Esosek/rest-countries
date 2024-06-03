@@ -40,20 +40,21 @@ export default function DetailPage({ country }: DetailPageProps) {
           Back
         </div>
       </Button>
-      <div className={styles.flex}>
+      <div className={styles.content}>
         <img src={country.flag} alt={`Flag of ${country.name}`} />
         <div>
           <h1>{country.name}</h1>
           <ul className={styles.grid}>
             {ATTRIBUTES.map(([key, value]) => (
-              <li key={key}>
+              <li key={key} className={styles.light}>
                 <span className={styles.label}>{key}: </span>
                 {value}
               </li>
             ))}
           </ul>
+
           <ul className={styles.borders}>
-            <li className={styles.label}>Border Countries:</li>
+            <h2 className={styles.label}>Border Countries:</h2>
             {country.borders.map((border) => {
               const countryName = getCountryNameByCode(border);
               return countryName === undefined ? null : (

@@ -87,6 +87,13 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+  font-size: initial;
+  font-weight: initial;
+}
+
+h1 {
+  font-weight: var(--fw-bold);
+  font-size: var(--fs-large);
 }
 
 ul {

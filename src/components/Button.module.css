@@ -8,7 +8,6 @@
 
 .button {
   transition: background-color 150ms, transform 150ms;
-  margin-block: 2rem;
 }
 
 .button:hover,

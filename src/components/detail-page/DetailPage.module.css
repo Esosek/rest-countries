@@ -1,5 +1,6 @@
 .main {
-  padding: 2rem 1rem;
+  padding: 2rem 1.5rem;
+  font-weight: var(--fw-light);
 }
 
 .backButton {
@@ -8,8 +9,70 @@
   gap: 0.5rem;
 }
 
+.content {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 4rem;
+  margin-top: 3rem;
+}
+
+.content > img {
+  width: 100%;
+  max-width: 30rem;
+}
+
+.label {
+  font-weight: var(--fw-regular);
+}
+
+h2.label {
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  gap: 0.25rem;
+  margin-block: 2rem;
+  text-wrap: nowrap;
+}
+
+.grid > li:nth-of-type(5) {
+  margin-bottom: 2rem;
+}
+
+.borders {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
 @media only screen and (min-width: 640px) {
   .main {
     padding: 3rem 5rem;
+  }
+
+  .grid {
+    grid-auto-flow: column;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(5, 1fr);
+  }
+
+  .grid > li:nth-of-type(5) {
+    margin-bottom: 0;
+  }
+
+  h2.label {
+    width: auto;
+  }
+}
+
+@media only screen and (min-width: 1080px) {
+  .content {
+    display: grid;
+    gap: 4rem;
+    grid-template-columns: 1fr 1fr;
   }
 }
