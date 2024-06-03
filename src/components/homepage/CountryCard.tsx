@@ -15,6 +15,7 @@ export default function CountryCard({ country }: CountryCardProps) {
         src={country.flag}
         alt={`Flag of ${country.name}`}
         className={styles.image}
+        loading="lazy"
       />
       <div className={styles.content}>
         <h2 className={styles.title}>{country.name}</h2>
