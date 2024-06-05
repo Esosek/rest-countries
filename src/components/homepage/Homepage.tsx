@@ -11,11 +11,13 @@ type HomepageProps = {
 
 export default function Homepage({ countries }: HomepageProps) {
   countries.sort((a, b) => b.population - a.population);
+
+  function handleFilterChange(value: string) {}
   return (
     <main className={styles.main}>
       <div className={styles.flex}>
         <SearchBar />
-        <RegionFilter />
+        <RegionFilter countries={countries} onChange={handleFilterChange} />
       </div>
       <div className={styles.grid}>
         {countries.map((country) => (

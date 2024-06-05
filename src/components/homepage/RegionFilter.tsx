@@ -1,16 +1,27 @@
-import { useRef, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import styles from './RegionFilter.module.css';
 import arrowUpIcon from '../../assets/images/arrow_up_icon.svg';
+import type { Country } from '../../types/country';
 
-type RegionFilterProps = {};
+type RegionFilterProps = {
+  countries: Country[];
+  onChange: (value: string) => void;
+};
 
-export default function RegionFilter(props: RegionFilterProps) {
-  const REGIONS = ['Africa', 'America', 'Asia', 'Europe', 'Oceania'];
-
+export default function RegionFilter({
+  countries,
+  onChange,
+}: RegionFilterProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState('none');
   const selectRef = useRef<HTMLSelectElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const regions = useMemo(() => {
+    const regionSet = new Set<string>();
+    countries.forEach((country) => regionSet.add(country.region));
+    return Array.from(regionSet);
+  }, [countries]);
 
   function toggleSelect() {
     setIsOpen(!isOpen);
@@ -19,6 +30,7 @@ export default function RegionFilter(props: RegionFilterProps) {
   function handleOptionSelect(selectedOption: string) {
     setSelectedOption(selectedOption);
     setIsOpen(false);
+    onChange(selectedOption);
 
     if (selectedOption === 'none') {
       clearUrlParam('filter');
@@ -65,7 +77,7 @@ export default function RegionFilter(props: RegionFilterProps) {
         className="sr-only"
       >
         <option value="none">None</option>
-        {REGIONS.map((region) => (
+        {regions.map((region) => (
           <option key={region} value={region}>
             {region}
           </option>
@@ -108,7 +120,7 @@ export default function RegionFilter(props: RegionFilterProps) {
                 None
               </button>
             </li>
-            {REGIONS.map((region) => (
+            {regions.map((region) => (
               <li key={region}>
                 <button
                   onClick={() => handleOptionSelect(region)}
