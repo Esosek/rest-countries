@@ -20,6 +20,7 @@
 .content > img {
   width: 100%;
   max-width: 30rem;
+  box-shadow: var(--shadow-md);
 }
 
 .label {

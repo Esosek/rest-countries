@@ -11,14 +11,14 @@ type DetailPageProps = {
 
 export default function DetailPage({ country }: DetailPageProps) {
   const ATTRIBUTES = [
-    ['Native Name', country.nativeName],
-    ['Population', country.population.toLocaleString('en-US')],
-    ['Region', country.region],
-    ['Sub Region', country.subregion],
-    ['Capital', country.capital],
-    ['Top Level Domain', country.topLevelDomain.join(', ')],
-    ['Currencies', country.currencies.map((cur) => cur.name).join(', ')],
-    ['Languages', country.languages.map((lang) => lang.name).join(', ')],
+    ['Native Name', country.nativeName ?? ''],
+    ['Population', country.population.toLocaleString('en-US') ?? ''],
+    ['Region', country.region ?? ''],
+    ['Sub Region', country.subregion ?? ''],
+    ['Capital', country.capital ?? ''],
+    ['Top Level Domain', country.topLevelDomain?.join(', ')],
+    ['Currencies', country.currencies?.map((cur) => cur.name).join(', ')],
+    ['Languages', country.languages?.map((lang) => lang.name).join(', ')],
   ];
 
   function handleBackButton() {
@@ -55,7 +55,7 @@ export default function DetailPage({ country }: DetailPageProps) {
 
           <ul className={styles.borders}>
             <h2 className={styles.label}>Border Countries:</h2>
-            {country.borders.map((border) => {
+            {country.borders?.map((border) => {
               const countryName = getCountryNameByCode(border);
               return countryName === undefined ? null : (
                 <li key={border}>
