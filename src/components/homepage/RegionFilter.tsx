@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './RegionFilter.module.css';
+import { setUrlParam, clearUrlParam } from '../../utils/urlParams';
 import arrowUpIcon from '../../assets/images/arrow_up_icon.svg';
 import type { Country } from '../../types/country';
 
@@ -52,18 +53,6 @@ export default function RegionFilter({
     if (buttonRef.current) {
       buttonRef.current.focus();
     }
-  }
-
-  function setUrlParam(key: string, value: string) {
-    const url = new URL(window.location.href);
-    url.searchParams.set(key, value);
-    window.history.replaceState(null, '', url.toString());
-  }
-
-  function clearUrlParam(key: string) {
-    const url = new URL(window.location.href);
-    url.searchParams.delete(key);
-    window.history.replaceState(null, '', url.toString());
   }
 
   function handleKeyDown(event: React.KeyboardEvent) {
