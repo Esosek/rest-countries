@@ -3,9 +3,11 @@ import styles from './SeachBar.module.css';
 import searchIcon from '../../assets/images/search_icon.svg';
 import { useRef } from 'react';
 
-type SearchBarProps = {};
+type SearchBarProps = {
+  onChange: (value: string) => void;
+};
 
-export default function SearchBar(props: SearchBarProps) {
+export default function SearchBar({ onChange }: SearchBarProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   return (
     <div onClick={() => inputRef.current!.focus()} className={styles.searchBar}>
@@ -19,6 +21,7 @@ export default function SearchBar(props: SearchBarProps) {
         type="text"
         className={styles.input}
         placeholder="Search for a country..."
+        onInput={(e) => onChange(e.currentTarget.value)}
       />
     </div>
   );

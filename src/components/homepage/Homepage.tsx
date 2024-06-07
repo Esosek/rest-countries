@@ -4,34 +4,103 @@ import SearchBar from './SearchBar';
 import RegionFilter from './RegionFilter';
 import type { Country } from '../../types/country';
 import CountryCard from './CountryCard';
-import { useEffect, useState } from 'react';
+import { useReducer } from 'react';
 
 type HomepageProps = {
   countries: Country[];
 };
 
-export default function Homepage({ countries }: HomepageProps) {
-  const [filteredCountries, setFilteredCountries] = useState(countries);
+enum CountriesActionKind {
+  SET_REGION_FILTER = 'setRegionFilter',
+  SET_SEARCH_FILTER = 'setSearchFilter',
+}
 
-  countries.sort((a, b) => b.population - a.population);
+type CountriesState = {
+  initialCountries: Country[];
+  currentCountries: Country[];
+  regionFilter: string;
+  searchFilter: string;
+};
 
-  function handleFilterChange(filteredRegion: string) {
-    if (filteredRegion === 'none') {
-      setFilteredCountries(countries);
-    } else {
-      setFilteredCountries(
-        countries.filter((country) => country.region === filteredRegion)
+type CountriesAction = {
+  type: CountriesActionKind;
+  payload: string;
+};
+
+function filterReducer(state: CountriesState, action: CountriesAction) {
+  const { type, payload } = action;
+
+  let updatedCountries = [...state.initialCountries];
+
+  switch (type) {
+    case CountriesActionKind.SET_REGION_FILTER:
+      if (payload !== 'none') {
+        updatedCountries = updatedCountries.filter(
+          (country) => country.region === payload
+        );
+      }
+      updatedCountries = updatedCountries.filter((country) =>
+        country.name.toLowerCase().includes(state.searchFilter)
       );
-    }
+
+      return {
+        ...state,
+        currentCountries: updatedCountries,
+        regionFilter: payload,
+      };
+
+    case CountriesActionKind.SET_SEARCH_FILTER:
+      if (state.regionFilter !== 'none') {
+        updatedCountries = updatedCountries.filter(
+          (country) => country.region === state.regionFilter
+        );
+      }
+      updatedCountries = updatedCountries.filter((country) =>
+        country.name.toLowerCase().includes(payload.toLowerCase())
+      );
+
+      return {
+        ...state,
+        currentCountries: updatedCountries,
+        searchFilter: payload.toLowerCase(),
+      };
+    default:
+      return state;
+  }
+}
+
+export default function Homepage(props: HomepageProps) {
+  const sortedCountries = [...props.countries].sort(
+    (a, b) => b.population - a.population
+  );
+  const [state, dispatch] = useReducer(filterReducer, {
+    initialCountries: sortedCountries,
+    currentCountries: sortedCountries,
+    searchFilter: '',
+    regionFilter: 'none',
+  });
+
+  function handleSearchChange(searchText: string) {
+    dispatch({
+      type: CountriesActionKind.SET_SEARCH_FILTER,
+      payload: searchText,
+    });
+  }
+
+  function handleFilterChange(region: string) {
+    dispatch({ type: CountriesActionKind.SET_REGION_FILTER, payload: region });
   }
   return (
     <main className={styles.main}>
       <div className={styles.flex}>
-        <SearchBar />
-        <RegionFilter countries={countries} onChange={handleFilterChange} />
+        <SearchBar onChange={handleSearchChange} />
+        <RegionFilter
+          countries={props.countries}
+          onChange={handleFilterChange}
+        />
       </div>
       <div className={styles.grid}>
-        {filteredCountries.map((country) => (
+        {state.currentCountries.map((country) => (
           <CountryCard key={country.alpha3Code} country={country} />
         ))}
       </div>
