@@ -20,6 +20,7 @@ export default function SearchBar({ onChange }: SearchBarProps) {
     const searchFilter = new URL(document.URL).searchParams.get('search');
     if (searchFilter) {
       updateSearchFilter(searchFilter);
+      inputRef.current!.value = searchFilter;
     }
   }
 
