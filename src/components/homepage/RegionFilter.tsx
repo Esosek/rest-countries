@@ -1,4 +1,4 @@
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './RegionFilter.module.css';
 import arrowUpIcon from '../../assets/images/arrow_up_icon.svg';
 import type { Country } from '../../types/country';
@@ -16,6 +16,17 @@ export default function RegionFilter({
   const [selectedOption, setSelectedOption] = useState('none');
   const selectRef = useRef<HTMLSelectElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    getFilter();
+  }, []);
+
+  function getFilter() {
+    const filter = new URL(document.URL).searchParams.get('filter');
+    if (filter) {
+      handleOptionSelect(filter);
+    }
+  }
 
   const regions = useMemo(() => {
     const regionSet = new Set<string>();

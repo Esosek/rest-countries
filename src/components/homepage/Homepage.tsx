@@ -4,7 +4,7 @@ import SearchBar from './SearchBar';
 import RegionFilter from './RegionFilter';
 import type { Country } from '../../types/country';
 import CountryCard from './CountryCard';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 type HomepageProps = {
   countries: Country[];
