@@ -16,9 +16,13 @@ export default function Homepage({ countries }: HomepageProps) {
   countries.sort((a, b) => b.population - a.population);
 
   function handleFilterChange(filteredRegion: string) {
-    setFilteredCountries(
-      countries.filter((country) => country.region === filteredRegion)
-    );
+    if (filteredRegion === 'none') {
+      setFilteredCountries(countries);
+    } else {
+      setFilteredCountries(
+        countries.filter((country) => country.region === filteredRegion)
+      );
+    }
   }
   return (
     <main className={styles.main}>
