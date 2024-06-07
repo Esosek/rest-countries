@@ -1,5 +1,6 @@
 ---
 import Header from '../components/header/Header';
+import ThemeContextProvider from '../context/Theme';
 import '../styles/global.css';
 const { title } = Astro.props;
 ---
@@ -16,8 +17,10 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <Header />
-    <slot />
+    <ThemeContextProvider>
+      <Header />
+      <slot />
+    </ThemeContextProvider>
   </body>
 </html>
 
