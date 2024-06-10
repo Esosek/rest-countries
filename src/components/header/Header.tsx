@@ -1,13 +1,14 @@
+import ThemeContextProvider from '../../context/Theme';
 import styles from './Header.module.css';
 import ThemeSwitch from './ThemeSwitch';
 
-type HeaderProps = {};
-
-export default function Header(props: HeaderProps) {
+export default function Header() {
   return (
-    <header className={styles.header}>
-      <p className={styles.title}>Where in the world?</p>
-      <ThemeSwitch />
-    </header>
+    <ThemeContextProvider>
+      <header className={styles.header}>
+        <p className={styles.title}>Where in the world?</p>
+        <ThemeSwitch />
+      </header>
+    </ThemeContextProvider>
   );
 }

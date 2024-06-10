@@ -4,6 +4,8 @@ import type { Country } from '../../types/country';
 import Button from '../Button';
 import countryData from '../../data/data.json';
 import backIcon from '../../assets/images/back_icon.svg';
+import ThemeContextProvider from '../../context/Theme';
+import Header from '../header/Header';
 
 type DetailPageProps = {
   country: Country;
@@ -33,44 +35,47 @@ export default function DetailPage({ country }: DetailPageProps) {
   }
 
   return (
-    <main className={styles.main}>
-      <Button onClick={handleBackButton}>
-        <div className={styles.backButton}>
-          <img src={backIcon.src} alt="Back icon" />
-          Back
-        </div>
-      </Button>
-      <div className={styles.content}>
-        <img src={country.flag} alt={`Flag of ${country.name}`} />
-        <div>
-          <h1>{country.name}</h1>
-          <ul className={styles.grid}>
-            {ATTRIBUTES.map(([key, value]) => (
-              <li key={key} className={styles.light}>
-                <span className={styles.label}>{key}: </span>
-                {value}
-              </li>
-            ))}
-          </ul>
-
-          <ul className={styles.borders}>
-            <h2 className={styles.label}>Border Countries:</h2>
-            {country.borders?.map((border) => {
-              const countryName = getCountryNameByCode(border);
-              return countryName === undefined ? null : (
-                <li key={border}>
-                  <Button
-                    isLink={true}
-                    href={`/country/${border.toLowerCase()}`}
-                  >
-                    {countryName}
-                  </Button>
+    <ThemeContextProvider>
+      <Header />
+      <main className={styles.main}>
+        <Button onClick={handleBackButton}>
+          <div className={styles.backButton}>
+            <img src={backIcon.src} alt="Back icon" />
+            Back
+          </div>
+        </Button>
+        <div className={styles.content}>
+          <img src={country.flag} alt={`Flag of ${country.name}`} />
+          <div>
+            <h1>{country.name}</h1>
+            <ul className={styles.grid}>
+              {ATTRIBUTES.map(([key, value]) => (
+                <li key={key} className={styles.light}>
+                  <span className={styles.label}>{key}: </span>
+                  {value}
                 </li>
-              );
-            })}
-          </ul>
+              ))}
+            </ul>
+
+            <ul className={styles.borders}>
+              <h2 className={styles.label}>Border Countries:</h2>
+              {country.borders?.map((border) => {
+                const countryName = getCountryNameByCode(border);
+                return countryName === undefined ? null : (
+                  <li key={border}>
+                    <Button
+                      isLink={true}
+                      href={`/country/${border.toLowerCase()}`}
+                    >
+                      {countryName}
+                    </Button>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
         </div>
-      </div>
-    </main>
+      </main>
+    </ThemeContextProvider>
   );
 }

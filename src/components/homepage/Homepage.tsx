@@ -5,6 +5,8 @@ import RegionFilter from './RegionFilter';
 import type { Country } from '../../types/country';
 import CountryCard from './CountryCard';
 import { useReducer } from 'react';
+import Header from '../header/Header';
+import ThemeContextProvider from '../../context/Theme';
 
 type HomepageProps = {
   countries: Country[];
@@ -91,19 +93,22 @@ export default function Homepage(props: HomepageProps) {
     dispatch({ type: CountriesActionKind.SET_REGION_FILTER, payload: region });
   }
   return (
-    <main className={styles.main}>
-      <div className={styles.flex}>
-        <SearchBar onChange={handleSearchChange} />
-        <RegionFilter
-          countries={props.countries}
-          onChange={handleFilterChange}
-        />
-      </div>
-      <div className={styles.grid}>
-        {state.currentCountries.map((country) => (
-          <CountryCard key={country.alpha3Code} country={country} />
-        ))}
-      </div>
-    </main>
+    <ThemeContextProvider>
+      <Header />
+      <main className={styles.main}>
+        <div className={styles.flex}>
+          <SearchBar onChange={handleSearchChange} />
+          <RegionFilter
+            countries={props.countries}
+            onChange={handleFilterChange}
+          />
+        </div>
+        <div className={styles.grid}>
+          {state.currentCountries.map((country) => (
+            <CountryCard key={country.alpha3Code} country={country} />
+          ))}
+        </div>
+      </main>
+    </ThemeContextProvider>
   );
 }

@@ -1,16 +1,54 @@
-import { createContext, useState, type PropsWithChildren } from 'react';
+import { createContext, useEffect, useState, type ReactNode } from 'react';
 
 export enum Theme {
   DARK = 'dark',
   LIGHT = 'light',
 }
 
-const ThemeContext = createContext({});
+type ThemeContextType = {
+  theme: Theme;
+  toggleTheme: () => void;
+};
 
-export default function ThemeContextProvider({ children }: PropsWithChildren) {
+export const ThemeContext = createContext<ThemeContextType>({
+  theme: Theme.LIGHT,
+  toggleTheme: () => {},
+});
+
+type ThemeContextProviderProps = {
+  children: ReactNode;
+};
+
+export default function ThemeContextProvider({
+  children,
+}: ThemeContextProviderProps) {
+  const THEME_KEY = 'theme';
   const [theme, setTheme] = useState(Theme.LIGHT);
+
+  useEffect(() => {
+    const storedTheme = localStorage.getItem(THEME_KEY);
+    if (storedTheme === Theme.LIGHT || storedTheme === Theme.DARK) {
+      setTheme(storedTheme);
+    }
+  }, []);
+
+  function toggleTheme() {
+    setTheme((prevTheme) => {
+      if (prevTheme === Theme.LIGHT) {
+        storeTheme(Theme.DARK);
+        return Theme.DARK;
+      } else {
+        storeTheme(Theme.LIGHT);
+        return Theme.LIGHT;
+      }
+    });
+
+    function storeTheme(value: string) {
+      localStorage.setItem(THEME_KEY, value);
+    }
+  }
   return (
-    <ThemeContext.Provider value={{ theme, setTheme }}>
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
       {children}
     </ThemeContext.Provider>
   );
