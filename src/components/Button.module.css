@@ -7,7 +7,7 @@
 }
 
 .button {
-  transition: background-color 150ms, transform 150ms;
+  transition: transform 150ms;
 }
 
 .button:hover,
@@ -17,4 +17,9 @@
 
 .button:hover {
   transform: rotateZ(-3deg);
+}
+
+[data-theme='dark'] .button,
+[data-theme='dark'] .link {
+  background-color: var(--clr-dark-blue-700);
 }

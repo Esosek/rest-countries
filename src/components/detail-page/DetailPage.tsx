@@ -40,7 +40,14 @@ export default function DetailPage({ country }: DetailPageProps) {
       <main className={styles.main}>
         <Button onClick={handleBackButton}>
           <div className={styles.backButton}>
-            <img src={backIcon.src} alt="Back icon" />
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="20px"
+              viewBox="0 -960 960 960"
+              width="20px"
+            >
+              <path d="M384-288 192-480l192-192 51 51-105 105h438v72H330l105 105-51 51Z" />
+            </svg>
             Back
           </div>
         </Button>
