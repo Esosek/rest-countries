@@ -23,6 +23,7 @@ export default function ThemeContextProvider({
   children,
 }: ThemeContextProviderProps) {
   const THEME_KEY = 'theme';
+  const htmlElement = document.body.parentElement;
   const [theme, setTheme] = useState(Theme.LIGHT);
 
   useEffect(() => {
@@ -31,6 +32,10 @@ export default function ThemeContextProvider({
       setTheme(storedTheme);
     }
   }, []);
+
+  useEffect(() => {
+    htmlElement?.setAttribute('data-theme', theme);
+  }, [theme]);
 
   function toggleTheme() {
     setTheme((prevTheme) => {
