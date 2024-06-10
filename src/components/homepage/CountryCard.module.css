@@ -36,3 +36,7 @@
   font-weight: var(--fw-bold);
   margin-bottom: 0.5rem;
 }
+
+[data-theme='dark'] .card {
+  background-color: var(--clr-dark-blue-700);
+}
