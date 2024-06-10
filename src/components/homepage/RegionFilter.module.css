@@ -24,6 +24,7 @@
 }
 
 .arrow {
+  fill: var(--clr-dark-blue-900);
   transition: rotate 300ms;
 }
 
@@ -41,4 +42,13 @@
 
 .option {
   font-size: var(--fs-small);
+}
+
+[data-theme='dark'] .select,
+[data-theme='dark'] .optionList {
+  background-color: var(--clr-dark-blue-700);
+}
+
+[data-theme='dark'] .arrow {
+  fill: var(--clr-white);
 }

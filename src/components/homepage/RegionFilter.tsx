@@ -95,12 +95,16 @@ export default function RegionFilter({
           <span>
             {selectedOption === 'none' ? 'Filter by Region' : selectedOption}
           </span>
-          <img
-            src={arrowUpIcon.src}
-            alt="Arrow icon"
+          <svg
             className={styles.arrow}
             style={{ transform: isOpen ? 'rotate(-180deg)' : 'rotate(0deg)' }}
-          />
+            xmlns="http://www.w3.org/2000/svg"
+            height="20px"
+            viewBox="0 -960 960 960"
+            width="20px"
+          >
+            <path d="M480-525 291-336l-51-51 240-240 240 240-51 51-189-189Z" />
+          </svg>
         </button>
         {isOpen && (
           <ul
