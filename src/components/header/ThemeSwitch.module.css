@@ -4,10 +4,10 @@
   align-items: center;
 }
 
-svg {
+.icon {
   fill: var(--clr-dark-blue-900);
 }
 
-[data-theme='dark'] svg {
+[data-theme='dark'] .icon {
   fill: var(--clr-white);
 }

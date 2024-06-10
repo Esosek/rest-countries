@@ -40,6 +40,7 @@ body {
   font-weight: var(--fw-regular);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  transition: background-color 300ms ease-out;
 }
 
 img,
@@ -117,4 +118,5 @@ ul {
 
 [data-theme='dark'] body {
   color: var(--clr-white);
+  background-color: var(--clr-dark-blue-800);
 }

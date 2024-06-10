@@ -18,6 +18,10 @@
   outline: var(--clr-outline) solid 2px;
 }
 
+.searchIcon {
+  fill: var(--clr-neutral-600);
+}
+
 .input {
   font-size: var(--fs-small);
   padding-block: 0.75rem;
@@ -27,4 +31,17 @@
 
 .input:focus {
   outline: none;
+}
+
+[data-theme='dark'] .searchBar,
+[data-theme='dark'] .input {
+  background-color: var(--clr-dark-blue-700);
+}
+
+[data-theme='dark'] .input::placeholder {
+  color: var(--clr-white);
+}
+
+[data-theme='dark'] .searchIcon {
+  fill: var(--clr-white);
 }
