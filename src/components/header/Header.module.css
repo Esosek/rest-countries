@@ -8,11 +8,16 @@
   padding: 1.5rem 1rem;
   box-shadow: var(--shadow-md);
   z-index: 10;
+  transition: background-color 300ms ease-out;
 }
 
 .title {
   font-size: var(--fs-regular);
   font-weight: var(--fw-bold);
+}
+
+[data-theme='dark'] .header {
+  background-color: var(--clr-dark-blue-700);
 }
 
 @media only screen and (min-width: 640px) {

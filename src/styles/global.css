@@ -52,6 +52,7 @@ input,
 button,
 textarea,
 select {
+  color: inherit;
   font: inherit;
 }
 
@@ -112,4 +113,8 @@ ul {
   position: absolute !important;
   width: 1px !important;
   white-space: nowrap !important;
+}
+
+[data-theme='dark'] body {
+  color: var(--clr-white);
 }
