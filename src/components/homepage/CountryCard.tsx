@@ -8,7 +8,7 @@ type CountryCardProps = {
 export default function CountryCard({ country }: CountryCardProps) {
   return (
     <a
-      href={`/country/${country.alpha3Code.toLowerCase()}`}
+      href={`/rest-countries/country/${country.alpha3Code.toLowerCase()}`}
       className={styles.card}
     >
       <img

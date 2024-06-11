@@ -72,7 +72,7 @@ export default function DetailPage({ country }: DetailPageProps) {
                   <li key={border}>
                     <Button
                       isLink={true}
-                      href={`/country/${border.toLowerCase()}`}
+                      href={`/rest-countries/country/${border.toLowerCase()}`}
                     >
                       {countryName}
                     </Button>
