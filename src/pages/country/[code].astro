@@ -6,10 +6,15 @@ import type { Country } from '../../types/country';
 const country: Country = Astro.props;
 
 export const getStaticPaths = async () => {
-  const countryData = await fetchCountryData();
+  let countryData: Country[] = [];
+  try {
+    countryData = await fetchCountryData();
+  } catch (error) {
+    console.log(error);
+  }
 
   async function fetchCountryData() {
-    const url = new URL(`${import.meta.env.API_BASE_URL}/country.json`);
+    const url = new URL(`${import.meta.env.PUBLIC_API_BASE_URL}/country.json`);
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error('Failed to fetch country data');
