@@ -4,16 +4,22 @@ import Homepage from '../components/homepage/Homepage';
 
 import type { Country } from '../types/country';
 
-async function fetchCountryData() {
+async function fetchCountryData(): Promise<Country[]> {
   const url = new URL(
     'https://esosek.github.io/rest-countries/api/country.json'
   );
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error('Failed to fetch country data');
+
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Failed to fetch country data');
+    }
+    const responseData = await response.json();
+    return responseData.body;
+  } catch (error) {
+    console.log(error);
+    return [];
   }
-  const responseData = await response.json();
-  return responseData.body as Country[];
 }
 
 const countryData = await fetchCountryData();
