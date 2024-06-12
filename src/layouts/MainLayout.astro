@@ -19,3 +19,10 @@ const { title } = Astro.props;
     <slot />
   </body>
 </html>
+
+<script>
+  const htmlElement = document.body.parentElement;
+  const theme = localStorage.getItem('theme') ?? 'light';
+
+  htmlElement?.setAttribute('data-theme', theme);
+</script>
