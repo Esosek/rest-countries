@@ -2,10 +2,21 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import Homepage from '../components/homepage/Homepage';
 
-import countryData from '../data/data.json';
 import type { Country } from '../types/country';
+
+async function fetchCountryData() {
+  const url = new URL(`${import.meta.env.API_BASE_URL}/country.json`);
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error('Failed to fetch country data');
+  }
+  const responseData = await response.json();
+  return responseData.body as Country[];
+}
+
+const countryData = await fetchCountryData();
 ---
 
 <MainLayout title="Country Handbook">
-  <Homepage client:only="react" countries={countryData as Country[]} />
+  <Homepage client:only="react" countries={countryData} />
 </MainLayout>

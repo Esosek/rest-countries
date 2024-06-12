@@ -48,7 +48,7 @@ export default function SearchBar({ onChange }: SearchBarProps) {
       <div>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          height=""
+          height="24px"
           viewBox="0 -960 960 960"
           width="24px"
           className={styles.searchIcon}
