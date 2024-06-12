@@ -1,21 +1,32 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
-import countryData from '../../data/data.json';
 import DetailPage from '../../components/detail-page/DetailPage';
 import type { Country } from '../../types/country';
 
-export const getStaticPaths = () => {
-  return countryData.map((country) => {
+const country: Country = Astro.props;
+
+export const getStaticPaths = async () => {
+  const countryData = await fetchCountryData();
+
+  async function fetchCountryData() {
+    const url = new URL(`${import.meta.env.API_BASE_URL}/country.json`);
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Failed to fetch country data');
+    }
+    const responseData = await response.json();
+    return responseData.body as Country[];
+  }
+
+  return countryData.map((country: Country) => {
     return {
       params: { code: country.alpha3Code.toLowerCase() },
       props: country,
     };
   });
 };
-
-const country = Astro.props;
 ---
 
 <MainLayout title={`${country.name} | Country Handbook`}>
-  <DetailPage client:only="react" country={country as Country} />
+  <DetailPage client:only="react" country={country} />
 </MainLayout>
