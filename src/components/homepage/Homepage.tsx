@@ -103,11 +103,17 @@ export default function Homepage(props: HomepageProps) {
             onChange={handleFilterChange}
           />
         </div>
-        <div className={styles.grid}>
-          {state.currentCountries.map((country) => (
-            <CountryCard key={country.alpha3Code} country={country} />
-          ))}
-        </div>
+        {props.countries.length > 0 ? (
+          <div className={styles.grid}>
+            {state.currentCountries.map((country) => (
+              <CountryCard key={country.alpha3Code} country={country} />
+            ))}
+          </div>
+        ) : (
+          <div className={styles.errorMessage}>
+            <p>Sorry, something went wrong. Try again later.</p>
+          </div>
+        )}
       </main>
     </ThemeContextProvider>
   );
