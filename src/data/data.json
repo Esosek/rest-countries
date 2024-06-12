@@ -4126,6 +4126,7 @@
     "area": 78865,
     "gini": 25,
     "timezones": ["UTC+01:00"],
+    "borders": ["GER", "AUT", "SVK", "POL"],
     "nativeName": "Česká republika",
     "numericCode": "203",
     "flags": {
