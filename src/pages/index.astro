@@ -5,7 +5,9 @@ import Homepage from '../components/homepage/Homepage';
 import type { Country } from '../types/country';
 
 async function fetchCountryData() {
-  const url = new URL(`${import.meta.env.API_BASE_URL}/country.json`);
+  const url = new URL(
+    'https://esosek.github.io/rest-countries/api/country.json'
+  );
   const response = await fetch(url);
   if (!response.ok) {
     throw new Error('Failed to fetch country data');
