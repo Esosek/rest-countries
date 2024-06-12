@@ -2,8 +2,6 @@ import { useEffect, useRef, type FormEvent } from 'react';
 import styles from './SeachBar.module.css';
 import { setUrlParam, clearUrlParam } from '../../utils/urlParams';
 
-import searchIcon from '../../assets/images/search_icon.svg';
-
 type SearchBarProps = {
   onChange: (value: string) => void;
 };

@@ -3,7 +3,6 @@ import type { Country } from '../../types/country';
 
 import Button from '../Button';
 import countryData from '../../data/data.json';
-import backIcon from '../../assets/images/back_icon.svg';
 import ThemeContextProvider from '../../context/Theme';
 import Header from '../header/Header';
 

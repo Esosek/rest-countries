@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import styles from './RegionFilter.module.css';
 import { setUrlParam, clearUrlParam } from '../../utils/urlParams';
-import arrowUpIcon from '../../assets/images/arrow_up_icon.svg';
 import type { Country } from '../../types/country';
 
 type RegionFilterProps = {
