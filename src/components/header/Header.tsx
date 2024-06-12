@@ -6,7 +6,9 @@ export default function Header() {
   return (
     <ThemeContextProvider>
       <header className={styles.header}>
-        <p className={styles.title}>Where in the world?</p>
+        <a href="/rest-countries" className={styles.title}>
+          Where in the world?
+        </a>
         <ThemeSwitch />
       </header>
     </ThemeContextProvider>
